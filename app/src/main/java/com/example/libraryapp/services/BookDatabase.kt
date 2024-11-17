@@ -9,7 +9,7 @@ import com.example.libraryapp.models.Book
 
 @Database(entities = [Book::class], version = 1)
 abstract class BookDatabase:RoomDatabase() {
-    abstract fun BookDao():BookDao
+    abstract fun bookDao():BookDao
     companion object{
         private var INSTANCE : BookDatabase?=null
         fun getInstance(context: Context):BookDatabase{
@@ -19,7 +19,7 @@ abstract class BookDatabase:RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         BookDatabase::class.java,
-                        "monkeys_database")
+                        "books_database")
                         .build()
                     INSTANCE=instance
                 }

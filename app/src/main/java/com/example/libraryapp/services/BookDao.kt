@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.libraryapp.models.Book
 
 @Dao
@@ -15,8 +16,11 @@ interface BookDao {
     suspend fun  getBooks():List<Book>
 
     @Insert
-    suspend fun insert(books:List<Book>)
+    suspend fun insert(book:Book)
+
+    @Update
+    suspend fun update(book:Book)
 
     @Delete
-    suspend fun delete(books:Book)
+    suspend fun delete(book:Book)
 }
