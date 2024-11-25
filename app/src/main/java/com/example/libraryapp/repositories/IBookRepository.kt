@@ -6,6 +6,6 @@ interface IBookRepository {
     suspend fun getBooks():List<Book>
     suspend fun getBook(bookId:Int):Book
     suspend fun updateBook(book:Book)
-    suspend fun insertBook(book:Book)
+    suspend fun insertBook(books:List<Book>)
     suspend fun deleteBook(book:Book)
 }

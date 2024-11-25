@@ -6,21 +6,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.libraryapp.models.Book
 import com.example.libraryapp.repositories.BookRepository
 import com.example.libraryapp.repositories.IBookRepository
 import kotlinx.coroutines.launch
-import com.example.libraryapp.models.Book
 
-class CatalogueViewModel(application: Application):ViewModel(){
-    private val bookRepository:IBookRepository =BookRepository(application)
-    var books:List<Book>? by mutableStateOf(null)
+class BookDetailsViewModel(bookId:Int,application: Application):ViewModel() {
+    private val bookRepository:IBookRepository=BookRepository(application)
+    var book: Book? by mutableStateOf(null)
+
     init {
-        getBooks()
+        getBook(bookId)
     }
-
-    fun getBooks() {
+    fun getBook(bookId: Int){
         viewModelScope.launch {
-            books = bookRepository.getBooks()
+            book=bookRepository.getBook(bookId)
         }
     }
 }

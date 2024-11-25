@@ -16,7 +16,7 @@ interface BookDao {
     suspend fun  getBooks():List<Book>
 
     @Insert
-    suspend fun insert(book:Book)
+    suspend fun insert(books:List<Book>)
 
     @Update
     suspend fun update(book:Book)

@@ -8,6 +8,9 @@ class BookRepository(application:Application):IBookRepository {
     private val dao = BookDatabase.getInstance(application).bookDao()
 
     override suspend fun getBooks(): List<Book> {
+        if (dao.getBooks().isEmpty()) {
+            seed()
+        }
         return dao.getBooks()
     }
 
@@ -19,11 +22,30 @@ class BookRepository(application:Application):IBookRepository {
         return dao.update(book)
     }
 
-    override suspend fun insertBook(book: Book) {
-        return dao.insert(book)
+    override suspend fun insertBook(books: List<Book>) {
+        return dao.insert(books)
     }
 
     override suspend fun deleteBook(book:Book) {
         return dao.delete(book)
     }
+
+    private suspend fun seed(){
+        dao.insert(
+            listOf(
+                Book(
+                    id=1,
+                    title = "Good Omens",
+                    author= "Terry Pratchet & Neill Gaiman"
+                ),
+                Book(
+                    id=2,
+                    title = "Sapiens",
+                    author= "Yuval Noah Harrari"
+                )
+            )
+        )
+    }
+
+
 }
