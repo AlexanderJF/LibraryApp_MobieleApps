@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.kotlin.serialization)
+
 }
 
 android {
@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.libraryapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -57,21 +57,15 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    annotationProcessor(libs.room.compiler)
-    ksp(libs.room.compiler)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    
-    implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.okhttp)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.coil.compose)
-    implementation(libs.androidx.navigation.compose)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
