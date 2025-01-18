@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.libraryapp.models.Book
 
 
-@Database(entities = [Book::class], version = 1)
+@Database(entities = [Book::class], version = 2)
 abstract class BookDatabase :RoomDatabase() {
     abstract fun bookDao():BookDao
     companion object {
@@ -21,7 +21,10 @@ abstract class BookDatabase :RoomDatabase() {
                         context.applicationContext,
                         BookDatabase::class.java,
                         "books_database"
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

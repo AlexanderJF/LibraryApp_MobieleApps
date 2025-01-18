@@ -1,5 +1,6 @@
 package com.example.libraryapp.services
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -20,8 +21,8 @@ interface BookDao {
     suspend fun delete(book: Book)
 
     @Query("SELECT * FROM books ORDER BY title DESC")
-    fun getAllBooks(): List<Book>
+    fun getAllBooks(): LiveData<List<Book>>
 
     @Query("SELECT * FROM books WHERE id = :bookId")
-    suspend fun getBookById(bookId: Int): Book?
+    suspend fun getBookById(bookId: Int): Book
 }
