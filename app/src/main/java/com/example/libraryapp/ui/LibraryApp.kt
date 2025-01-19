@@ -82,10 +82,12 @@ fun LibraryApp(navController: NavHostController = rememberNavController()) {
                 }
 
                 BookListScreen(
-                    books = viewModel.books,
+                    books = viewModel.filteredAndSortedBooks,
                     onDeleteClick = { viewModel.deleteBook(it) },
                     onListItemClick = { book -> navController.navigate("edit/${book.id}") },
-                    onFabClick = { navController.navigate("add") }
+                    onFabClick = { navController.navigate("add") },
+                    onSearchQueryChange = { viewModel.setSearchQuery(it) },
+                    onSortOrderChange = { viewModel.setSortOrder(it) }
                 )
             }
 
