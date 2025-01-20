@@ -19,8 +19,8 @@ import com.example.libraryapp.models.Book
 
 @Composable
 fun AddNewBookScreen(
-    onSaveClick: (Book) -> Unit,  // Save the new book
-    onCancelClick: () -> Unit    // Navigate back
+    onSaveClick: (Book) -> Unit,
+    onCancelClick: () -> Unit
 ) {
     var title by remember { mutableStateOf("") }
     var author by remember { mutableStateOf("") }

@@ -74,7 +74,6 @@ fun LibraryApp(navController: NavHostController = rememberNavController()) {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            // List Screen
             composable("list") {
                 val context = LocalContext.current
                 val viewModel: BookListViewModel = viewModel {
@@ -91,7 +90,6 @@ fun LibraryApp(navController: NavHostController = rememberNavController()) {
                 )
             }
 
-
             composable("add") {
                 val context = LocalContext.current
                 val viewModel: AddNewBookViewModel = viewModel {
@@ -106,7 +104,6 @@ fun LibraryApp(navController: NavHostController = rememberNavController()) {
                     onCancelClick = { navController.navigateUp() }
                 )
             }
-
 
             composable(
                 route = "edit/{bookId}",

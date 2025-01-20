@@ -31,15 +31,13 @@ fun EditBookScreen(
     onCancelClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // Observe the LiveData
+
     val bookData by book.observeAsState()
 
-    // Initialize state variables based on the observed book data
     var title by remember { mutableStateOf(bookData?.title ?: "") }
     var author by remember { mutableStateOf(bookData?.author ?: "") }
     var isbn by remember { mutableStateOf(bookData?.isbn ?: "") }
 
-    // Update state variables when bookData changes
     LaunchedEffect(bookData) {
         title = bookData?.title ?: ""
         author = bookData?.author ?: ""
@@ -71,7 +69,6 @@ fun EditBookScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(onClick = {
-                // Check if bookData is not null before copying
                 bookData?.let { existingBook ->
                     onSaveClick(existingBook.copy(title = title, author = author, isbn = isbn.ifBlank { null }))
                 }
@@ -80,7 +77,6 @@ fun EditBookScreen(
             }
             Button(
                 onClick = {
-                    // Check if bookData is not null before deleting
                     bookData?.let { existingBook ->
                         onDeleteClick(existingBook)
                     }
